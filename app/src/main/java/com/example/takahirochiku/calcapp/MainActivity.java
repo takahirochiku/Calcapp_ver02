@@ -9,8 +9,15 @@ import android.widget.EditText;
 
 import static com.example.takahirochiku.calcapp.R.id.editText1;
 import static com.example.takahirochiku.calcapp.R.id.editText2;
+import static java.lang.Integer.valueOf;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+
+    EditText mEditText1;
+    EditText mEditText2;
+    double a;
+    double b;
+    double result;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,16 +38,37 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         mEditText1 = (EditText) findViewById(editText1);
         mEditText2 = (EditText) findViewById(editText2);
-        int result;
     }
 
     @Override
-
     public void onClick(View v) {
         if (v.getId() == R.id.button1) {
-            result.setText(String.valueOf(editText1 + editText2));
+            a = Double.valueOf(mEditText1.getText().toString());
+            b = Double.valueOf(mEditText2.getText().toString());
+            result = a + b;
             Intent intent = new Intent(this, SecondActivity.class);
-            intent.putExtra("VALUE1", result);
+            intent.putExtra("KEY", result);
+            startActivity(intent);
+        } else if (v.getId() == R.id.button2) {
+            a = Double.valueOf(mEditText1.getText().toString());
+            b = Double.valueOf(mEditText2.getText().toString());
+            result = a - b;
+            Intent intent = new Intent(this, SecondActivity.class);
+            intent.putExtra("KEY", result);
+            startActivity(intent);
+        } else if (v.getId() == R.id.button3) {
+            a = Double.valueOf(mEditText1.getText().toString());
+            b = Double.valueOf(mEditText2.getText().toString());
+            result = a * b;
+            Intent intent = new Intent(this, SecondActivity.class);
+            intent.putExtra("KEY", result);
+            startActivity(intent);
+        }else if (v.getId() == R.id.button4) {
+            a = Double.valueOf(mEditText1.getText().toString());
+            b = Double.valueOf(mEditText2.getText().toString());
+            result = a / b;
+            Intent intent = new Intent(this, SecondActivity.class);
+            intent.putExtra("KEY", result);
             startActivity(intent);
         }
     }
